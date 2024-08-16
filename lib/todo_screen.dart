@@ -1,12 +1,30 @@
+import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:final_todo_app/settingTab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class MainScreen extends StatelessWidget {
+import 'colors.dart';
+import 'taskTab.dart';
+
+class MainScreen extends StatefulWidget {
+
   MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int currentIndex=0;
+
+  int selectedIndex=0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: wallpaperColor,
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('ToDo',
           style: TextStyle(
@@ -14,14 +32,63 @@ class MainScreen extends StatelessWidget {
               color: Colors.white,
               fontSize: 30),
         ),
-        backgroundColor: Colors.blueAccent,
-        toolbarHeight: 70,
+        backgroundColor: primaryColor,
+        toolbarHeight: 80,
       ),
-      body: Column(
-        children: [
 
-        ],
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        clipBehavior: Clip.none,
+        backgroundColor: primaryColor,
+        shape: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(35),
+            borderSide: BorderSide(color: Colors.transparent)
+        ),
+        child: IconButton(
+          onPressed: (){},
+          icon: Icon(Icons.add,
+          color: Colors.white,
+          size: 40,),
+        ),
+        onPressed: (){},
       ),
+
+      bottomNavigationBar:
+      BottomAppBar(
+        // color: Colors.white,
+        notchMargin: 9,
+        padding: EdgeInsets.zero,
+        shape: CircularNotchedRectangle(),
+
+        child: BottomNavigationBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          selectedItemColor: primaryColor,
+          unselectedItemColor: Colors.grey,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          iconSize: 35,
+          onTap: (index){
+            selectedIndex=index;
+            setState(() {
+
+            });
+          },
+          currentIndex: selectedIndex,
+
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.list,),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings,),
+                label: "")
+          ],
+        ),
+      ),
+      body: tabs[selectedIndex],
     );
   }
+
+  List<Widget> tabs =[TasksTab(),SettingTab()];
 }
