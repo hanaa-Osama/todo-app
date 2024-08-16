@@ -17,7 +17,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int currentIndex=0;
-
   int selectedIndex=0;
 
   @override
@@ -71,7 +70,6 @@ class _MainScreenState extends State<MainScreen> {
           onTap: (index){
             selectedIndex=index;
             setState(() {
-
             });
           },
           currentIndex: selectedIndex,
@@ -89,6 +87,5 @@ class _MainScreenState extends State<MainScreen> {
       body: tabs[selectedIndex],
     );
   }
-
   List<Widget> tabs =[TasksTab(),SettingTab()];
 }

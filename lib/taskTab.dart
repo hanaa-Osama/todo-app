@@ -1,4 +1,5 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:final_todo_app/taskItem.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
@@ -22,7 +23,9 @@ class TasksTab extends StatelessWidget {
             activeBackgroundDayColor: primaryColor,
             selectableDayPredicate: (date) => date.day != 5,
             locale: 'en'
-          )
+          ),
+          SizedBox(height: 50),
+          TaskItem()
         ]
     );
   }
