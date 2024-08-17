@@ -43,17 +43,18 @@ class TaskItem extends StatelessWidget {
           IconButton(onPressed: (){
 
           },
-              icon: Container(
-                height: 50,
-                width: 80,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: primaryColor,
-                ),
-                child: Icon(Icons.check,
-                color: Colors.white,
-                size: 30,),
-              ))
+            icon: Icon(Icons.check,
+            color: Colors.white,
+            size: 30,),
+            padding: EdgeInsets.zero,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: primaryColor,
+              minimumSize: Size(80, 40),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)
+              )
+            ),
+          )
         ],
       ),
     );

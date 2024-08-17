@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'addTask.dart';
 import 'colors.dart';
 import 'taskTab.dart';
 
@@ -22,6 +23,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: wallpaperColor,
       // resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -37,20 +39,30 @@ class _MainScreenState extends State<MainScreen> {
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (context){
+                return Padding(
+                  padding: EdgeInsets.only(
+                    bottom:MediaQuery.of(context).viewInsets.bottom
+                  ),
+                  child: AddTask(),
+                );
+              }
+              );
+        },
         clipBehavior: Clip.none,
         backgroundColor: primaryColor,
         shape: OutlineInputBorder(
             borderRadius: BorderRadius.circular(35),
             borderSide: BorderSide(color: Colors.transparent)
         ),
-        child: IconButton(
-          onPressed: (){},
-          icon: Icon(Icons.add,
+        child: Icon(Icons.add,
           color: Colors.white,
           size: 40,),
         ),
-        onPressed: (){},
-      ),
 
       bottomNavigationBar:
       BottomAppBar(
